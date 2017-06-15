@@ -25,32 +25,32 @@ var badCharacters = [
 		charname: "borg",
 	 	HP: 150,
 	 	strength: 15,
-		src: "<img class='badCharacters' src= 'assets/images/enemies/borg.jpg' id='borg'>"},
+		src: "assets/images/enemies/borg.jpg"},
 		{
 		charname: "ferengi",
 		HP: 125,
 		strength: 5,
-		src: "<img class='badCharacters' src= 'assets/images/enemies/Ferengi.jpg' id='ferengi'/>"},
+		src: "assets/images/enemies/Ferengi.jpg"},
 		{
 		charname: "gul",
 		HP: 175,
 		strength: 25,
-		src: "<img class='badCharacters' src= 'assets/images/enemies/gul.jpg' id='gul'/>"},
+		src: "assets/images/enemies/gul.jpg"},
 		{
 		charname: "Qq",
 		HP: 250,
 		strength: 50,
-		src: "<img class='badCharacters' src= 'assets/images/enemies/Qq.jpg' id='Qq'/> "}
+		src: "assets/images/enemies/Qq.jpg"}
 		,{
 		charname: "dominion",
 		HP: 200,
 		strength: 40,
-		src: "<img class='badCharacters' src= 'assets/images/enemies/the dominion.jpg' id='dominion'/> "},
+		src: "assets/images/enemies/the dominion.jpg"},
 		{
 		charname: "romulans",
 		HP: 150,
 		strength: 30,
-		src: "<img class='badCharacters' src= 'assets/images/enemies/romulans.jpg' id='romulans'/>"}
+		src: "assets/images/enemies/romulans.jpg"}
 	]
 // click on character to choose a character
 // When you click on a character, the other characters disapear and the enemies appear
@@ -58,8 +58,8 @@ var badCharacters = [
 	$('.characters').on('click', function() {
 		clickedOn = $(this).attr("src");
 		mainCharacter();
+		console.log(clickedOn);
 		return enemies();
-
 		});
 
 //clicking on an enemy moves them to defender area '.badCharacters'
@@ -67,6 +67,7 @@ var badCharacters = [
 	$('.badGuysContainer').on('click', '.badCharacters', function() {
 		clickedOnFight = $(this).attr("src");
 		enemyMove();
+		console.log(clickedOnFight);
 	});
 
 
@@ -94,9 +95,12 @@ function enemyMove() {
 //click on character in defender area to fight them
 
 function enemyClickFight() {
-	$(".clickAttack").on("click", function()
+	$(".clickAttack").click( function() {
 	fight();
-)}
+	die();
+	win();
+	}
+)};
 
 //update bad char with correct hp
 
@@ -141,12 +145,13 @@ function die(){
 
 function win() {
 	for( i=0; i <= wins; i++) {
-		if (badCharHp == 0);
+		if (badCharHp == 0) {
 		wins++;
-	} else if (wins == 3){
+		} else if (wins == 3) {
 		alert("You Win!");
-	}
+		}
 
-} 
+	} 
+}
 
 });
