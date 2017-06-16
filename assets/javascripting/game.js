@@ -22,7 +22,7 @@ $(document).ready(function() {
 	var wins;
 
 //Barcharacter HPs 
-var badCharacters = [
+var badCharacters = 
 		{ borg: 
 			{
 			id: "borg",
@@ -66,7 +66,7 @@ var badCharacters = [
 			src: "assets/images/enemies/romulans.jpg"
 			}
 	}
-	]
+
 // click on character to choose a character
 // When you click on a character, the other characters disapear and the enemies appear
 
@@ -86,10 +86,10 @@ var badCharacters = [
 		clickedOnFight = $(this).attr("src");
 		clickedOnIdBad = $(this).attr("id");
 		enemyMove();
-		enemyHpUpdate();
+		console.log(clickedOnIdBad)
+		enemyHpUpdatetoHtml();
 		// updateCharHp();
 		console.log(clickedOnFight);
-		console.log(clickedOnIdBad)
 	});
 
 
@@ -121,8 +121,9 @@ function enemyMove() {
 
 //update enemyHP when first moved
 
-function enemyHpUpdate() {
-	enemyHP = badCharacters.clickedOnIdBad.HP
+function enemyHpUpdatetoHtml() {
+	var parseBadId = JSON.parse(clickedOnIdBad)
+	enemyHP = badCharacters.parseBadId.HP
 	$(".badGuyHp").html("<h2>" + enemyHP + "</h2>")
 }
 
